@@ -19,18 +19,18 @@ rounded,
 ...rest     // this means take all the props from the parent other than the mentioned props so it will take rest of the various eventHandlers from parent component and send to the button component instead of getting each and every eventHandlers
 } ) {
     const classes = className(rest.className,'flex items-center px-3 py-1.5 mx-3 my-1.5 border' , { // these 1st arg style is gonna apply to the Button irrespective of the prop it contain and also rest.className ensures if nay className is defined on the Button then it is also included inside the classes.
-        'border-blue-500 bg-blue-500 text-white' :primary, // this style is only applied to Button if that Button has primary as prop
-        'border-gray-900 bg-gray-900 text-white' :secondary, // this style is only applied to Button if that Button has secondary as prop
-        'border-green-500 bg-green-500 text-white' :success, // this style is only applied to Button if that Button has success as prop
-        'border-yellow-400 bg-yellow-400 text-white' :warning, // this style is only applied to Button if that Button has warning as prop
-        'border-red-500 bg-red-500 text-white' :danger, // this style is only applied to Button if that Button has danger as prop
+        'border-blue-500 bg-blue-500 text-white' :primary && !outline, // this style is only applied to Button if that Button has primary as prop
+        'border-gray-900 bg-gray-900 text-white' :secondary && !outline, // this style is only applied to Button if that Button has secondary as prop
+        'border-green-500 bg-green-500 text-white' :success && !outline, // this style is only applied to Button if that Button has success as prop
+        'border-yellow-400 bg-yellow-400 text-white' :warning && !outline, // this style is only applied to Button if that Button has warning as prop
+        'border-red-500 bg-red-500 text-white' :danger && !outline, // this style is only applied to Button if that Button has danger as prop
         'rounded-full' : rounded,
-        'bg-light cream' : outline,
-        'text-blue-500' : outline && primary, // here if both are bool and are applied to the Button then if both are true then the latest style i.e, with style of outline will be applied to the Button;
-        'text-gray-900' : outline && secondary, // same explanation as above
-        'text-green-500' : outline && success, // same above explanation
-        'text-orange-400' : outline && warning, // same above explanation
-        'text-red-500' : outline && danger, // same above explanation
+        'bg-white' : outline,
+        'text-blue-500' : primary && outline, // here if both are bool and are applied to the Button then if both are true then the latest style i.e, with style of outline will be applied to the Button;
+        'text-gray-900' : secondary && outline, // same explanation as above
+        'text-green-500' : success && outline, // same above explanation
+        'text-orange-400' : warning && outline, // same above explanation
+        'text-red-500' : danger && outline, // same above explanation
     });
 
     return <button {...rest}  className={classes}>{children}</button>// here we are taking the prop children from the App(parent) and using it here instead of hard coding in btw 'button' component.
